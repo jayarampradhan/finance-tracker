@@ -1,0 +1,9 @@
+.idea/
+.gradle/
+out/
+build/
+*.iml
+
+/frontend/node_modules/
+
+*/npm-debug.log

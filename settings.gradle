@@ -1,0 +1,22 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "kotlin2js") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+            }
+        }
+    }
+}
+include 'ui-app'
+include 'frontend'
+
+include "buildSrc"
+rootProject.children.find { it.name == "buildSrc" }.name = "ft-build-src"
+
+rootProject.name = 'finance-tracker'
+
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle.kts"
+}
+
+
