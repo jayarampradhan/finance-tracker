@@ -17,6 +17,20 @@ import kotlin.browser.window
  *
  */
 fun main(args: Array<String>) {
+	val onMs: (Event) -> dynamic= {
+//		val distanceY = window.pageYOffset || document.documentElement.scrollTop;
+		val shrinkOn = 300;
+		val header = document.querySelector("header");
+		print(header)
+//		if (distanceY > shrinkOn) {
+//			classie.add(header,"smaller");
+//		} else {
+//			if (classie.has(header,"smaller")) {
+//				classie.remove(header,"smaller");
+//			}
+//		}
+	}
+	window.addEventListener("scroll", onMs);
     window.onload = {
 		val myDev = document.create.div("panel") {
 			p {
