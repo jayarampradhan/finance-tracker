@@ -67,6 +67,9 @@ module.exports ={
     resolve: {
             alias: {
                 kotlin: path.resolve(__dirname, "build/kotlin-js-min/main/kotlin.js"),
+                bootstrapStyle: path.resolve(__dirname, "node_modules/bootstrap/scss/"),
+                fontAwesomeStyle: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss/"),
+                commonStyle: path.resolve(__dirname, "src/asset/scss/common/"),
                 "kotlinx-html-js": path.resolve(__dirname, "build/kotlin-js-min/main/kotlinx-html-js.js"),
             },
             extensions: ['.js', '.jsx', '.scss', '.css'],

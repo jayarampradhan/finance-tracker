@@ -1,2 +1,20 @@
+// Required
+@import "~bootstrapStyle/bootstrap";
+//@import "~bootstrapStyle/variables";
+//@import "~bootstrapStyle/mixins";
+//@import "~bootstrapStyle/utilities";
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+// Optional
+//@import "~bootstrapStyle/reboot";
+//@import "~bootstrapStyle/type";
+//@import "~bootstrapStyle/images";
+//@import "~bootstrapStyle/code";
+//@import "~bootstrapStyle/grid";
+
+//Font Awesome
+@import "~fontAwesomeStyle/fontawesome";
+
+@import "~commonStyle/mixins";
+@import "~commonStyle/global";
+@import "~commonStyle/navbar";
+@import "~commonStyle/bootstrap-overrides";
