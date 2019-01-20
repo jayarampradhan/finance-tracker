@@ -17,7 +17,7 @@ a {
 }
 
 .bg-secondary {
-  background-color: darken($blue, 30%) !important;
+  background-color: $ft-color !important;
 }
 
 .text-primary {
@@ -29,8 +29,8 @@ a {
 }
 
 .btn-primary {
-  background-color: $primary;
-  border-color: $primary;
+  background-color: $ft-color;
+  border-color: $ft-color;
   &:hover,
   &:focus,
   &:active {
@@ -48,4 +48,20 @@ a {
     background-color: darken($secondary, 10%);
     border-color: darken($secondary, 10%);
   }
+}
+
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+@each $prop, $abbrev in (font-weight: fw) {
+  @each $weight, $length in $fontWeights {
+    .#{$abbrev}-#{$weight} { #{$prop}: $length !important; }
+  }
+}
+.card-header {
+  background-color: $ft-color;
+  color: $white;
 }

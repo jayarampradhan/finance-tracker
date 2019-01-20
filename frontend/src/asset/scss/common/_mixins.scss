@@ -1,8 +1,14 @@
-@mixin body-font() {
-  font-family: 'Lato';
+@mixin brand-font() {
+  font-family: 'Abel';
+  font-weight: 800;
 }
 
 @mixin heading-font() {
   font-weight: 700;
-  font-family: 'Montserrat';
+  font-family: 'Alegreya';
+}
+
+@mixin content-font() {
+  font-weight: 400;
+  font-family: 'Alegreya';
 }

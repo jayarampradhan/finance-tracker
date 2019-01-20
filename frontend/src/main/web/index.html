@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Abel|Alegreya" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/app.blocks.css">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -13,7 +13,7 @@
     </head>
     <body>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">Finance Tracker</a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,18 +23,84 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Login</a>
+                            <input class="nav-link py-3 px-0 px-lg-3 rounded form-control login-form" type="text" name="username" placeholder="Email or Phone" aria-label="username">
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+                            <input class="nav-link py-3 px-0 px-lg-3 rounded form-control login-form" type="password" name="password" placeholder="Password" aria-label="password">
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
+                            <input type="submit" name="Login" value="Login" class="px-0 px-lg-0 rounded btn btn-primary btn-sm login-btn" aria-label="Login">
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded reset-password" href="#contact">Forgot Account?</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <article>
+            <section class="main-content" aria-label="Main Content" id="mainContent">
+                <div class="d-flex flex-row mb-3">
+                    <div class="order-1 p-2 flex-fill bd-highlight"></div>
+                    <div class="order-2 p-2 flex-fill bd-highlight w-20 flex-grow-1">
+                        <article aria-describedby="appUsageContent" about="Usages of the application">
+                            <header>
+                                <h4>What it helps</h4>
+                            </header>
+                            <section id="appUsageContent" class="p-2">
+                                <div class="appUsageContentWrapper">
+                                    <div class="card my-3">
+                                        <div class="card-header">
+                                            Quote
+                                        </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Quote
+                                        </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    </div>
+                    <div class="order-3 p-2 flex-fill bd-highlight"></div>
+                    <div class="order-4 p-2 flex-fill bd-highlight w-10 flex-grow-1">
+                        <article>
+                            <header>
+                                <h3>Create an account</h3>
+                            </header>
+                            <section id="signUpContent" class="p-2" aria-describedby="signUpContentWrapper">
+                                <div class="signUpContentWrapper" id="signUpContentWrapper">
+                                    <div class="input-group my-3">
+                                        <input type="text" aria-label="First name" class="form-control mx-1" id="firstName" placeholder="First name">
+                                        <input type="text" aria-label="Last name" class="form-control" id="lastName" placeholder="Last name">
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <input type="text" class="form-control" placeholder="Email or phone number" aria-label="Username">
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <input type="password" class="form-control" placeholder="New password" aria-label="Password">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm btn-block fw-700">Sign Up</button>
+                                </div>
+                            </section>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </article>
         <script type="text/javascript" src="main.js"></script>
     </body>
 </html>

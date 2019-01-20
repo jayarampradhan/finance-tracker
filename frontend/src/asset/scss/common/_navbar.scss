@@ -1,14 +1,27 @@
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  line-height: 0.2rem;
   @include heading-font;
   .navbar-brand {
     color: $white;
+    @include brand-font;
   }
   .navbar-nav {
     margin-top: 1rem;
     letter-spacing: 0.0625rem;
     li.nav-item {
+      input.login-form,input.login-btn {
+        padding: 0.1rem !important;
+        margin-top: 0.19rem;
+        font-weight: 600;
+      }
+      input.login-form {
+        height: calc(1.6rem + 1px);
+      }
+      a.reset-password {
+        font-weight: 200;
+      }
       a.nav-link {
         color: $white;
         &:hover {
@@ -31,13 +44,13 @@
 }
 @media(min-width:992px) {
   #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
     .navbar-brand {
-      font-size: 2em;
+      font-size: 1.38em;
       -webkit-transition: font-size 0.3s;
       -moz-transition: font-size 0.3s;
       transition: font-size 0.3s;
@@ -54,13 +67,6 @@
         color: $white;
         background: $primary;
       }
-    }
-  }
-  #mainNav.navbar-shrink {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    .navbar-brand {
-      font-size: 1.5em;
     }
   }
 }
