@@ -1,6 +1,6 @@
 // Bootstrap overrides for this template
 a {
-  color: $primary;
+  color: $ft-color;
   &:focus,
   &:hover,
   &:active {
@@ -64,4 +64,39 @@ a {
 .card-header {
   background-color: $ft-color;
   color: $white;
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.border-gray-light {
+    border-color: $border-gray-light;
+}
+.list-style-none {
+    list-style: none!important;
 }

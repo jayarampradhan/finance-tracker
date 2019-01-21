@@ -25,6 +25,13 @@ module.exports ={
     },
     module: {
         rules: [
+            {test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                loader: "file-loader",
+                options: {
+                     name: '[name].[ext]',
+                     outputPath: 'font/'
+                }
+            },
             {
                 enforce: "pre",
                 test: /\.(js|jsx)$/,
@@ -73,7 +80,7 @@ module.exports ={
             alias: {
                 kotlin: path.resolve(__dirname, "build/kotlin-js-min/main/kotlin.js"),
                 bootstrapStyle: path.resolve(__dirname, "node_modules/bootstrap/scss/"),
-                fontAwesomeStyle: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss/"),
+                fontAwesomeStyle: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/"),
                 commonStyle: path.resolve(__dirname, "src/asser/scss/common/"),
                 "kotlinx-html-js": path.resolve(__dirname, "build/kotlin-js-min/main/kotlinx-html-js.js"),
             },

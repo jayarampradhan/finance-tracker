@@ -1,3 +1,4 @@
+@import "~commonStyle/variables-override";
 // Required
 @import "~bootstrapStyle/bootstrap";
 //@import "~bootstrapStyle/variables";
@@ -11,8 +12,11 @@
 //@import "~bootstrapStyle/code";
 //@import "~bootstrapStyle/grid";
 
+$fa-font-path:          "../../../node_modules/@fortawesome/fontawesome-free/webfonts";
+
 //Font Awesome
-@import "~fontAwesomeStyle/fontawesome";
+@import "~fontAwesomeStyle/scss/fontawesome";
+@import "~fontAwesomeStyle/scss/solid";
 
 @import "~commonStyle/variables";
 @import "~commonStyle/mixins";

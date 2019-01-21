@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Abel|Alegreya" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/app.blocks.css">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="Jayaram Pradhan">
         <title>Finance Tracker</title>
     </head>
     <body>
@@ -38,20 +38,22 @@
                 </div>
             </div>
         </nav>
-        <article>
+        <article class="container">
             <section class="main-content" aria-label="Main Content" id="mainContent">
                 <div class="d-flex flex-row mb-3">
-                    <div class="order-1 p-2 flex-fill bd-highlight"></div>
-                    <div class="order-2 p-2 flex-fill bd-highlight w-20 flex-grow-1">
+                    <div class="order-1 p-2 flex-fill bd-highlight w-20 flex-grow-1">
                         <article aria-describedby="appUsageContent" about="Usages of the application">
                             <header>
-                                <h4>What it helps</h4>
+                                <h4>What it is?</h4>
                             </header>
                             <section id="appUsageContent" class="p-2">
                                 <div class="appUsageContentWrapper">
                                     <div class="card my-3">
                                         <div class="card-header">
-                                            Quote
+                                            <span class="fw-100 my-1">
+                                                <i class="fas fa-info"></i>
+                                            </span>
+                                            <span>Worried about money spent in party?</span>
                                         </div>
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
@@ -62,7 +64,10 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-header">
-                                            Quote
+                                            <span class="fw-100 my-1">
+                                                <i class="fas fa-info"></i>
+                                            </span>
+                                            <span>Worried about expenses?</span>
                                         </div>
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
@@ -75,11 +80,11 @@
                             </section>
                         </article>
                     </div>
-                    <div class="order-3 p-2 flex-fill bd-highlight"></div>
-                    <div class="order-4 p-2 flex-fill bd-highlight w-10 flex-grow-1">
+                    <div class="order-2 p-2 flex-fill bd-highlight"></div>
+                    <div class="order-3 p-2 flex-fill bd-highlight w-10 flex-grow-1">
                         <article>
                             <header>
-                                <h3>Create an account</h3>
+                                <h4>Create an account</h4>
                             </header>
                             <section id="signUpContent" class="p-2" aria-describedby="signUpContentWrapper">
                                 <div class="signUpContentWrapper" id="signUpContentWrapper">
@@ -101,6 +106,19 @@
                 </div>
             </section>
         </article>
+        <div class="footer container px-3" role="contentinfo" aria-label="footer content" aria-describedby="footerWrapper">
+            <footer>
+                <div class="position-relative d-flex justify-content-between py-3 pb-2 my-3 text-gray border-top border-gray-light " id="footerWrapper">
+                    <ul class="list-style-none d-flex flex-wrap px-0">
+                        <li class="mr-3">&copy;2019&ndash; <span title="Farmiculture, changing way of living">Farmiculture</span>, Community.</li>
+                        <li class="mr-3"><a href="/terms">Terms</a></li>
+                        <li class="mr-3"><a href="/privacy">Privacy</a></li>
+                        <li class="mr-3"><a href="/security">Security</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
         <script type="text/javascript" src="main.js"></script>
     </body>
 </html>

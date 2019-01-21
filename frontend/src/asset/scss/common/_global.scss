@@ -1,5 +1,6 @@
 body {
   @include content-font;
+  @extend .min-vh-100;
 }
 
 h1,
@@ -32,3 +33,6 @@ section {
   font-size: 1.25rem;
 }
 
+.footer {
+    font-size: 0.78rem;
+}
