@@ -5,6 +5,7 @@ const webpack = require('webpack');
 module.exports ={
     mode: "development",
     entry: [path.resolve(__dirname, "build/classes/kotlin/main/frontend.js"),
+            path.resolve(__dirname, "src/asset/js/app.js"),
             path.resolve(__dirname, "src/asset/scss/app.scss"),
             ],
     output: {
@@ -78,6 +79,7 @@ module.exports ={
                 fontAwesomeStyle: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/"),
                 commonStyle: path.resolve(__dirname, "src/asset/scss/common/"),
                 "kotlinx-html-js": path.resolve(__dirname, "build/kotlin-js-min/main/kotlinx-html-js.js"),
+                'jquery': path.resolve(__dirname, "node_modules/jquery/dist/jquery.slim.js"),
             },
             extensions: ['.js', '.jsx', '.scss', '.css'],
             modules: [path.resolve(__dirname, 'src'), 'node_modules']
@@ -90,6 +92,12 @@ module.exports ={
                 filename: 'source-map/[file].map',
                 publicPath: 'https://cdn.farmiculture.in/financetracker/js',
                 fileContext: 'public'
+            }),
+            new webpack.ProvidePlugin({
+                        $: 'jquery',
+                        jQuery: 'jquery',
+                        'window.jQuery': 'jquery',
+                        Tether: 'tether'
             })
         ]
 }
