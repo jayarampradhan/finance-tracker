@@ -35,22 +35,21 @@ plugins {
     id ("org.jetbrains.kotlin.plugin.jpa") version "$kotlinVersion" apply false
 }
 
+configure(subprojects.filter { it.name != "frontend" }) {
+	val springVersion by System.getProperties()
+	apply(plugin = "java")
+	apply(plugin = "io.spring.dependency-management")
 
+	java.sourceCompatibility = JavaVersion.VERSION_1_8
+	java.targetCompatibility = JavaVersion.VERSION_1_8
+
+	dependencyManagement {
+		imports { mavenBom("org.springframework.boot:spring-boot-dependencies:$springVersion") }
+	}
+}
 
 subprojects {
-	val springVersion by System.getProperties()
-    apply(plugin = "java")
-    apply(plugin = "io.spring.dependency-management")
-    java.sourceCompatibility = JavaVersion.VERSION_1_8
-    java.targetCompatibility = JavaVersion.VERSION_1_8
 
-    repositories {
-        mavenCentral()
-    }
-
-    dependencyManagement {
-        imports { mavenBom("org.springframework.boot:spring-boot-dependencies:$springVersion") }
-    }
 }
 dependencies {
     // Make the root project archives configuration depend on every subproject

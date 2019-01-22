@@ -6,8 +6,8 @@ import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 
 import kotlin.browser.document
-@JsModule("bootstrap")
-@JsNonModule
+import kotlin.browser.window
+
 /**
  * external fun require(module: String): dynamic
  * require("path_to_file")
@@ -15,7 +15,7 @@ import kotlin.browser.document
  */
 external fun require(module: String): dynamic
 fun main(args: Array<String>) {
-//	require("bootstrap")
+	require("bootstrap")
 	val onMs: (Event) -> dynamic= {
 //		val distanceY = window.pageYOffset || document.documentElement.scrollTop;
 		val shrinkOn = 300;
@@ -42,7 +42,12 @@ fun main(args: Array<String>) {
 	button.addEventListener("click", {
 		console.info("Actually Working")
 		js("console.log($('#username').val())")
+
 	})
+	window.onload = {
+		js("console.log('Testing is working really amazing')")
+		js("$('[data-toggle=\"tooltip\"]').tooltip()")
+	}
 //        val eventSource = EventSource("/api/users")
 //		var li = document.createElement("li").apply {
 //			innerHTML = getAnswer()

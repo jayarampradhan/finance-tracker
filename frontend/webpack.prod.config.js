@@ -7,7 +7,6 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports ={
     mode: "production",
     entry: [path.resolve(__dirname, "build/classes/kotlin/main/frontend.js"),
-            path.resolve(__dirname, "src/asset/js/app.js"),
             path.resolve(__dirname, "src/asset/scss/app.scss")
 
     ],
@@ -79,15 +78,15 @@ module.exports ={
     },
     resolve: {
             alias: {
-                kotlin: path.resolve(__dirname, "build/kotlin-js-min/main/kotlin.js"),
+//                kotlin: path.resolve(__dirname, "build/kotlin-js-min/main/kotlin.js"),
+                kotlin: path.resolve(__dirname, "node_modules/kotlin/kotlin.js"),
                 bootstrapStyle: path.resolve(__dirname, "node_modules/bootstrap/scss/"),
                 fontAwesomeStyle: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/"),
-                commonStyle: path.resolve(__dirname, "src/asser/scss/common/"),
-                "kotlinx-html-js": path.resolve(__dirname, "build/kotlin-js-min/main/kotlinx-html-js.js"),
+                commonStyle: path.resolve(__dirname, "src/asset/scss/common/"),
+//                "kotlinx-html-js": path.resolve(__dirname, "build/kotlin-js-min/main/kotlinx-html-js.js"),
+                "kotlinx-html-js": path.resolve(__dirname, "node_modules/kotlinx-html/kotlinx-html-js.js"),
                 'jquery': path.resolve(__dirname, "node_modules/jquery/dist/jquery.slim.js"),
-            },
-            extensions: ['.js', '.jsx', '.scss', '.css'],
-            modules: [path.resolve(__dirname, 'src'), 'node_modules']
+            }
     },
     plugins: [
             new CopyWebpackPlugin([{ from: path.resolve(__dirname, "src/main/web") }]),
@@ -95,7 +94,8 @@ module.exports ={
                                     $: 'jquery',
                                     jQuery: 'jquery',
                                     'window.jQuery': 'jquery',
-                                    Tether: 'tether'
+                                    Tether: 'tether',
+                                    Popper: ['popper.js', 'default']
             })
         ]
 }
