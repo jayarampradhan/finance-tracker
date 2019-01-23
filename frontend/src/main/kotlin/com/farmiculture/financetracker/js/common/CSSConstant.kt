@@ -8,3 +8,5 @@ package com.farmiculture.financetracker.js.common
 const val INVISIBLE_CLS = "invisible"
 const val POSITION_ABSOLUTE = "position-absolute"
 const val DISABLED = "disabled"
+
+const val CLICK_EVENT = "click"

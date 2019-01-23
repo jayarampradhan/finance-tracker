@@ -20,7 +20,7 @@ class RegistrationView {
 		val signUp = getRequiredButtonById("signUp")
 		val signUpErrorWrapper = getRequiredDivById("signUpErrorWrapper");
 		signUpErrorWrapper.addClass(INVISIBLE_CLS, POSITION_ABSOLUTE)
-		signUp.addEventListener("click", {
+		signUp.addEventListener(CLICK_EVENT, {
 			signUp.setAttribute(DISABLED, "true")
 			val firstName = getRequiredInputById("firstName")
 			val lastName = getRequiredInputById("lastName")
