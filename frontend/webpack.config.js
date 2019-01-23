@@ -1,9 +1,6 @@
 const path = require("path");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
-//import * as path from 'path';
-//import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-//import * as webpack from 'webpack';
 
 module.exports ={
     mode: "development",
@@ -18,12 +15,9 @@ module.exports ={
     devtool: "source-map",
     module: {
         rules: [
-            {test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-                loader: "file-loader",
-                options: {
-                     name: '[name].[ext]',
-                     outputPath: 'font/'
-                }
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                loader: "url-loader?limit=10000&name=/fonts/[hash].[ext]",
             },
             {
                 enforce: "pre",

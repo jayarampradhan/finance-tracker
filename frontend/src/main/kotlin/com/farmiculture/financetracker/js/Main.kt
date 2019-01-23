@@ -1,5 +1,7 @@
 package com.farmiculture.financetracker.js
 
+import com.farmiculture.financetracker.js.beforelogin.RegistrationView
+import com.farmiculture.financetracker.js.common.require
 import com.farmiculture.financetracker.js.footer.createFooter
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLInputElement
@@ -9,13 +11,17 @@ import kotlin.browser.document
 import kotlin.browser.window
 
 /**
- * external fun require(module: String): dynamic
- * require("path_to_file")
+ * Handling the index.html content.
  *
+ * @author Jayaram Pradhan
+ * @since 1.0.0
  */
-external fun require(module: String): dynamic
+
 fun main(args: Array<String>) {
-	require("bootstrap")
+	loadExternalLibs()
+	document.getElementById("footerWrapperContainer")!!.append(createFooter())
+
+	js("$('.toast').toast('show')")
 	val onMs: (Event) -> dynamic= {
 //		val distanceY = window.pageYOffset || document.documentElement.scrollTop;
 		val shrinkOn = 300;
@@ -36,18 +42,17 @@ fun main(args: Array<String>) {
 //				+"Here is a Test"
 //			}
 //		}
-		document.getElementById("footerWrapperContainer")!!.append(createFooter())
+
 	val button = document.getElementById("login") as HTMLInputElement;
 
 	button.addEventListener("click", {
 		console.info("Actually Working")
-		js("console.log($('#username').val())")
+		val firstName = (document.getElementById("firstName")!! as HTMLInputElement).value;
+		console.info(firstName);
 
 	})
-	window.onload = {
-		js("console.log('Testing is working really amazing')")
-		js("$('[data-toggle=\"tooltip\"]').tooltip()")
-	}
+	RegistrationView().handleRegistrationView()
+
 //        val eventSource = EventSource("/api/users")
 //		var li = document.createElement("li").apply {
 //			innerHTML = getAnswer()
@@ -64,5 +69,8 @@ fun main(args: Array<String>) {
         // TODO Use eventSource.onmessage when KT-20741 will be fixed
 //        eventSource.addEventListener("message", onMessage)
 
+}
+fun loadExternalLibs() {
+	require("bootstrap")
 }
 

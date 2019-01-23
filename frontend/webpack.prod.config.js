@@ -25,12 +25,9 @@ module.exports ={
     },
     module: {
         rules: [
-            {test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-                loader: "file-loader",
-                options: {
-                     name: '[name].[ext]',
-                     outputPath: 'font/'
-                }
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                loader: "url-loader?limit=10000&name=/fonts/[hash].[ext]",
             },
             {
                 enforce: "pre",

@@ -25,8 +25,9 @@ node {
 
 
 dependencies {
+	val kotlinxVersion by System.getProperties()
     compile(kotlin("stdlib-js"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.6.12")
+    implementation("org.jetbrains.kotlinx:kotlinx-html-js:$kotlinxVersion")
 }
 tasks.withType<Kotlin2JsCompile> {
     kotlinOptions {
@@ -45,7 +46,7 @@ tasks.withType<KotlinJsDce> {
 
 /**
  * even though the `runDceKotlinJs` is called,
- * actual DCE is not happening because of a bug in kotlin version 1.3.11
+ * actual DCE is not happening because of a bug in kotlin version 1.3.20
  * actual build is happening from the npm modules,
  * when fixed remove the kotlin dep from npm package.json and make the resolve details as well.
  */

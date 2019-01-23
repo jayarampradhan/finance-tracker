@@ -36,6 +36,15 @@
         }
       }
     }
+    div.loginUsingBtnGroupWrapper {
+        line-height: 1rem;
+        span.googleBrand {
+            color: $blue
+        }
+        span.facebookBrand {
+            color: $blue
+        }
+    }
   }
   .navbar-toggler {
     font-size: 80%;
