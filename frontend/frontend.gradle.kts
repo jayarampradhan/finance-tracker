@@ -28,6 +28,7 @@ dependencies {
 	val kotlinxVersion by System.getProperties()
     compile(kotlin("stdlib-js"))
     implementation("org.jetbrains.kotlinx:kotlinx-html-js:$kotlinxVersion")
+	expectedBy(project(":model"))
 }
 tasks.withType<Kotlin2JsCompile> {
     kotlinOptions {

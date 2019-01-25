@@ -1,6 +1,7 @@
 package com.farmiculture.financetracker.js.beforelogin
 
 import com.farmiculture.financetracker.js.common.*
+import com.farmiculture.financetracker.model.request.Registration
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLInputElement
 import kotlin.browser.document
@@ -26,6 +27,8 @@ class RegistrationView {
 			val lastName = getRequiredInputById("lastName")
 			val userName = getRequiredInputById("userName")
 			val password = getRequiredInputById("password")
+			val regReq = Registration(firstName = firstName.value, lastName = lastName.value, userId = userName.value)
+			regReq.password = password.value
 			//TODO Actually Call for the registration and wait till it completes.
 			//TODO if success redirect to the home/main screen, else show the error with the registration link
 
