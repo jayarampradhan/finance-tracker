@@ -1,7 +1,7 @@
 description = "Exposes gradle buildSrc for IDE support"
 
 plugins {
-	`kotlin-dsl`
+//	`kotlin-dsl`
 }
 
 configurations {

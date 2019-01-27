@@ -1,8 +1,10 @@
 package com.farmiculture.financetracker.ui
 
 import com.farmiculture.financetracker.model.request.Registration
+import com.farmiculture.financetracker.ui.handler.RegistrationHandler
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
@@ -22,21 +24,13 @@ import java.time.Duration
 @SpringBootApplication
 class UIApplication {
 	val LOG = LoggerFactory.getLogger("Test")
+	@Autowired
+	private lateinit var registrationHandler: RegistrationHandler
 
 	@Bean
 	fun routes() = router {
 		GET("/") { ServerResponse.permanentRedirect(URI("/index.html")).build() }
-		(POST("/signup") and accept(MediaType.APPLICATION_JSON) and contentType(MediaType.APPLICATION_JSON)){
-			it.bodyToMono(Registration::class.java).flatMap { m ->
-				println(m.firstName)
-				LOG.info("Tesing{}", m.firstName)
-				if (m.firstName == "Test") {
-					ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromObject(m))
-				} else {
-					ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromObject(m))
-				}
-			}
-		}
+		(POST("/signup") and accept(MediaType.APPLICATION_JSON) and contentType(MediaType.APPLICATION_JSON)).invoke(registrationHandler::handle)
 		(GET("/api/users") and accept(MediaType.TEXT_EVENT_STREAM)) {
 			val users = Flux.just(
 				"Test", "Test2")

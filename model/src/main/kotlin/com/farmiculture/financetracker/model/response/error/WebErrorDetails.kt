@@ -5,6 +5,6 @@ package com.farmiculture.financetracker.model.response.error
  * @author Jay
  * @since 1.0.0
  */
-data class WebErrorDetails(val id: String, val message: String, val stackTrace: Throwable?) {
+data class WebErrorDetails(val id: String, val message: String, val stackTrace: Throwable? = null) {
 
 }

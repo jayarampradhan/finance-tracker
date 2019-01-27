@@ -9,6 +9,6 @@ package com.farmiculture.financetracker.model.response
 data class CommonResponse<out T>(val code: Int = 200, val data: T?) {
 
 	fun isSuccess() : Boolean {
-		return code in 200..299
+		return this.code in 200..299
 	}
 }

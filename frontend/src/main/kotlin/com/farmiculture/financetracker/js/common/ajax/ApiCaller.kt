@@ -17,7 +17,10 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 	private var completeHandler: ((O?, Event) -> Unit)? = null
 	private var progressHandler: ((Event) -> Unit)? = null
 	private var errorHandler: ((F?, Event) -> Unit)? = null
+	private var exceptionHandler: ((Event) -> Unit)? = null
 	private var abortHandler: ((Event) -> Unit)? = null
+	private var timeOutHandler: ((Event) -> Unit)? = null
+	private var finalizeHandler: ((Event) -> Unit)? = null
 	private var _data: I? = null
 	private var data: String? = null
 
@@ -33,7 +36,19 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 		this.errorHandler = action
 		return this
 	}
-	fun withHeaders(headers: HashMap<String, String>): ApiCaller<I, O, F> {
+	fun onTimeOut(action: (Event) -> Unit): ApiCaller<I, O, F> {
+		this.timeOutHandler = action
+		return this
+	}
+	fun onException(action: (Event) -> Unit): ApiCaller<I, O, F> {
+		this.exceptionHandler = action
+		return this;
+	}
+	fun onRequestComplete(action: (Event) -> Unit): ApiCaller<I, O, F> {
+		this.finalizeHandler = action
+		return this;
+	}
+	fun withHeaders(headers: Map<String, String>): ApiCaller<I, O, F> {
 		this.headers = HashMap(headers).toMap()
 		return this
 	}
@@ -76,13 +91,17 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 		return null
 	}
 
+	private fun onRequestComplete(e: Event) {
+		console.info("final request complete call")
+		this.finalizeHandler?.invoke(e)
+	}
+
 
 	fun doCall() {
 		val req = XMLHttpRequest()
 		req.open(method.method, url, async)
 		req.timeout = timeOut
 		headers.forEach { (key, value) -> req.setRequestHeader(key, value) }
-		console.info("Calling")
 		parseData()
 		if (data != null) {
 			req.send(data)
@@ -98,18 +117,21 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 			} else {
 				this.errorHandler?.invoke(parseErrorResult(req.responseText), it)
 			}
+			onRequestComplete(it)
 		})
 		req.addEventListener("error", {
 			console.info("EResponse"+it.eventPhase)
 			console.info("EResponse ready state"+req.readyState)
 			console.info("EResponse status"+req.status)
-//			console.info(it.target.)
+			this.exceptionHandler?.invoke(it)
+			onRequestComplete(it)
 		})
 		req.addEventListener("timeout", {
 			console.info("TResponse"+it.eventPhase)
 			console.info("TResponse ready state"+req.readyState)
 			console.info("TResponse status"+req.status)
-//			console.info(it.target.)
+			this.timeOutHandler?.invoke(it)
+			onRequestComplete(it)
 		})
 		req.addEventListener("progress", {
 			console.info("PResponse"+it.eventPhase)
@@ -119,6 +141,7 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 		})
 		req.addEventListener("abort", {
 			this.abortHandler?.invoke(it)
+			onRequestComplete(it)
 		})
 	}
 

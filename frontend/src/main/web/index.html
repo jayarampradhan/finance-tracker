@@ -105,20 +105,25 @@
                             </header>
                             <section id="signUpContent" class="p-2" aria-describedby="signUpContentWrapper">
                                 <div class="signUpContentWrapper" id="signUpContentWrapper">
-                                    <div class="alert alert-danger invisible clearfix position-absolute" id="signUpErrorWrapper">
-                                        <strong>Error!</strong> <span id="signUpErrorMessage"></span>
-                                    </div>
-                                    <div class="input-group my-3 clearfix">
-                                        <input type="text" aria-label="First name" class="form-control mx-1" id="firstName" placeholder="First name">
-                                        <input type="text" aria-label="Last name" class="form-control" id="lastName" placeholder="Last name">
-                                    </div>
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" placeholder="Email or phone number" aria-label="Username" id="userName">
-                                    </div>
-                                    <div class="input-group my-3">
-                                        <input type="password" class="form-control" placeholder="New password" aria-label="Password" id="password">
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-sm btn-block fw-700" id="signUp">Sign Up</button>
+                                    <form id="signUpForm">
+                                        <div class="alert alert-danger invisible clearfix position-absolute" id="signUpErrorWrapper">
+                                            <strong>Error!</strong> <span id="signUpErrorMessage"></span>
+                                        </div>
+                                        <div class="input-group my-3 clearfix">
+                                            <input type="text" aria-label="First name" class="form-control mx-1" id="firstName" placeholder="First name">
+                                            <input type="text" aria-label="Last name" class="form-control" id="lastName" placeholder="Last name">
+                                        </div>
+                                        <div class="input-group my-3">
+                                            <input type="text" class="form-control" placeholder="Email or phone number" aria-label="Username" id="userName">
+                                        </div>
+                                        <div class="input-group my-3">
+                                            <input type="password" class="form-control" placeholder="New password" aria-label="Password" id="password">
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-sm btn-block fw-700" id="signUp">
+                                            <span class="spinner-border spinner-border-sm invisible mx-2" id="signUpSpinner" role="status" aria-hidden="true"></span>
+                                            Sign Up
+                                        </button>
+                                    </form>
                                 </div>
                             </section>
                         </article>
