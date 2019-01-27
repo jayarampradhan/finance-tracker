@@ -3,6 +3,7 @@ package com.farmiculture.financetracker.js
 import com.farmiculture.financetracker.js.beforelogin.RegistrationView
 import com.farmiculture.financetracker.js.common.require
 import com.farmiculture.financetracker.js.footer.createFooter
+import org.w3c.dom.EventSource
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event

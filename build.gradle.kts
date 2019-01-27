@@ -39,7 +39,6 @@ plugins {
 configure(subprojects.filter { it.name != "frontend" && it.name != "model"}) {
 	val springVersion by System.getProperties()
 	val junitVersion by System.getProperties()
-	val kotlinVersion by System.getProperties()
 	apply(plugin = "kotlin")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "kotlin-platform-jvm")
@@ -51,7 +50,7 @@ configure(subprojects.filter { it.name != "frontend" && it.name != "model"}) {
 		withType<KotlinCompile> {
 			kotlinOptions {
 				jvmTarget = JavaVersion.VERSION_1_8.toString()
-				freeCompilerArgs = listOf("-Xjsr305=strict")
+				freeCompilerArgs = listOf("-Xjsr305=strict -jvm-target=1.8")
 			}
 		}
 	}
@@ -59,9 +58,11 @@ configure(subprojects.filter { it.name != "frontend" && it.name != "model"}) {
 		imports { mavenBom("org.springframework.boot:spring-boot-dependencies:$springVersion") }
 	}
 	dependencies {
+		val jacksonVersion by System.getProperties()
+		testImplementation("junit:junit:$junitVersion")
+		implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 		implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 		implementation("org.jetbrains.kotlin:kotlin-reflect")
-		testImplementation("junit:junit:$junitVersion")
 	}
 }
 
