@@ -55,7 +55,7 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 
 	private fun parseData() {
 		if (this.headers["Content-Type"].equals("application/json", ignoreCase = true)) {
-			this.data = JSON.stringify(data)
+			this.data = JSON.stringify(_data)
 		}
 		//TODO code for the XML and form data
 	}
@@ -77,7 +77,7 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 	}
 
 
-	fun doCall(data: I?) {
+	fun doCall() {
 		val req = XMLHttpRequest()
 		req.open(method.method, url, async)
 		req.timeout = timeOut
