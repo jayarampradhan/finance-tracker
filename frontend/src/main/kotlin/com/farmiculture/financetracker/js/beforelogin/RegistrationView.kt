@@ -49,7 +49,9 @@ class RegistrationView {
 
 	fun handleRegistration(registration: Registration) {
 //		val caller1 = ApiCaller<CommonResponse<Unit>, Registration>(RequestMethod.POST, "/signup/")
-//		val caller = ApiCaller<Registration, Registration>(RequestMethod.POST, "/signup/", {r,e -> console.info(r.firstName)})
+//		val caller = ApiCaller<Registration, Registration, Any>(RequestMethod.POST, "/signup/")
+//			.onComplete(action = )
+//			.
 //		caller.headers = mapOf("Content-Type" to "application/json")
 //		caller.doCall(registration)
 

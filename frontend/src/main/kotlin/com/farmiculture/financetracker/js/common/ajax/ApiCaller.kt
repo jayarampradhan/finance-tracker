@@ -11,19 +11,81 @@ import org.w3c.xhr.XMLHttpRequest
  */
 data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMethod.GET, val url: String, val async: Boolean = true) {
 
-	var headers = mapOf<String, String>()
+	private var headers = mapOf<String, String>()
 	//Time Out In milliseconds
-	var timeOut = 1000
+	private var timeOut :Int = 1000
+	private var completeHandler: ((O?, Event) -> Unit)? = null
+	private var progressHandler: ((Event) -> Unit)? = null
+	private var errorHandler: ((F?, Event) -> Unit)? = null
+	private var abortHandler: ((Event) -> Unit)? = null
+	private var _data: I? = null
+	private var data: String? = null
+
+	fun onComplete(action: (O?, Event) -> Unit): ApiCaller<I, O, F>{
+		this.completeHandler = action
+		return this
+	}
+	fun onProgress(action: (Event) -> Unit): ApiCaller<I, O, F>{
+		this.progressHandler = action
+		return this
+	}
+	fun onError(action: (F?, Event) -> Unit): ApiCaller<I, O, F> {
+		this.errorHandler = action
+		return this
+	}
+	fun withHeaders(headers: HashMap<String, String>): ApiCaller<I, O, F> {
+		this.headers = HashMap(headers).toMap()
+		return this
+	}
+
+	fun usingTimeOut(timeOut: Int = 1000): ApiCaller<I, O, F> {
+		this.timeOut = timeOut
+		return this
+	}
+
+	fun withBody(data: I): ApiCaller<I, O, F> {
+		this._data = data
+		return this
+	}
+
+	fun onAbort(action: (Event) -> Unit): ApiCaller<I, O, F> {
+		this.abortHandler = action
+		return this
+	}
+
+	private fun parseData() {
+		if (this.headers["Content-Type"].equals("application/json", ignoreCase = true)) {
+			this.data = JSON.stringify(data)
+		}
+		//TODO code for the XML and form data
+	}
+
+	private fun parseResult(response: String): O? {
+		if (this.headers["Accept"].equals("application/json", ignoreCase = true)) {
+			return JSON.parse(response)
+		}
+		//TODO code for the XML and form data
+		return null
+	}
+
+	private fun parseErrorResult(response: String): F? {
+		if (this.headers["Accept"].equals("application/json", ignoreCase = true)) {
+			return JSON.parse(response)
+		}
+		//TODO code for the XML and form data
+		return null
+	}
 
 
-	fun doCall(data: I?, onSuccess: (responseData: O, e: Event) -> Unit, onFailure: (responseData: F, e: Event) -> Unit) {
+	fun doCall(data: I?) {
 		val req = XMLHttpRequest()
 		req.open(method.method, url, async)
 		req.timeout = timeOut
 		headers.forEach { (key, value) -> req.setRequestHeader(key, value) }
 		console.info("Calling")
+		parseData()
 		if (data != null) {
-			req.send(JSON.stringify(data))
+			req.send(data)
 		} else {
 			req.send()
 		}
@@ -32,9 +94,9 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 			console.info("Response ready state"+req.readyState)
 			console.info("Response status"+req.status)
 			if (req.status in 200 .. 299) {
-				onSuccess(JSON.parse(req.responseText), it)
+				this.completeHandler?.invoke(parseResult(req.responseText), it)
 			} else {
-				onFailure(JSON.parse(req.responseText), it)
+				this.errorHandler?.invoke(parseErrorResult(req.responseText), it)
 			}
 		})
 		req.addEventListener("error", {
@@ -53,13 +115,10 @@ data class ApiCaller<in I, out O, out F>(val method: RequestMethod = RequestMeth
 			console.info("PResponse"+it.eventPhase)
 			console.info("PResponse ready state"+req.readyState)
 			console.info("PResponse status"+req.status)
-//			console.info(it.target.)
+			this.progressHandler?.invoke(it)
 		})
 		req.addEventListener("abort", {
-			console.info("AResponse"+it.eventPhase)
-			console.info("AResponse ready state"+req.readyState)
-			console.info("AResponse status"+req.status)
-//			console.info(it.target.)
+			this.abortHandler?.invoke(it)
 		})
 	}
 
