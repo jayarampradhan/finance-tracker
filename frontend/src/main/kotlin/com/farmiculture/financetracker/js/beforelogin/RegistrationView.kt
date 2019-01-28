@@ -36,7 +36,6 @@ class RegistrationView {
 			regReq.password = password.value
 			console.info(document.getElementById("signUpForm")?.getElementsByClassName(IS_INVALID_CSS))
 			document.getElementById("signUpForm")?.getElementsByClassName(IS_INVALID_CSS)?.asList()?.forEach {
-
 				elm ->
 				console.info(elm)
 				elm.removeClass(IS_INVALID_CSS)
