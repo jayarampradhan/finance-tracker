@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite
+		PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+		"http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<urlrewrite>
+	<rule>
+		<note>
+			The rule means that requests to /test/status/ will be redirected to /rewrite-status the url will be rewritten.
+		</note>
+		<from>/test/status/</from>
+		<to type="redirect">%{context-path}/rewrite-status</to>
+	</rule>
+	<rule>
+		<name>Domain Name Check</name>
+		<condition name="host" operator="notequal">www.userdomain.com</condition>
+		<from>^(.*)$</from>
+		<to type="redirect">http://www.userdomain.com$1</to>
+	</rule>
+</urlrewrite>

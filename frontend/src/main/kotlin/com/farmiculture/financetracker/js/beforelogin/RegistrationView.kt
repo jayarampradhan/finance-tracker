@@ -64,6 +64,7 @@ class RegistrationView {
 				u?.let {
 					if(isSuccess(u.code)){
 						console.info("redirect user to the home" + u.data)
+						window.location.hash="#!home";
 					}
 				}
 			}

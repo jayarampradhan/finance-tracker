@@ -30,6 +30,7 @@ class UIApplication {
 	@Bean
 	fun routes() = router {
 		GET("/") { ServerResponse.permanentRedirect(URI("/index.html")).build() }
+		GET("/#!home") { ServerResponse.permanentRedirect(URI("/home.html")).build() }
 		(POST("/signup") and accept(MediaType.APPLICATION_JSON) and contentType(MediaType.APPLICATION_JSON)).invoke(registrationHandler::handle)
 		(GET("/api/users") and accept(MediaType.TEXT_EVENT_STREAM)) {
 			val users = Flux.just(
